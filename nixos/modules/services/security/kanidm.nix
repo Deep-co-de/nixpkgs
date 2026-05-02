@@ -772,6 +772,7 @@ in
         entities =
           entityList "group" cfg.provision.groups
           ++ entityList "person" cfg.provision.persons
+          ++ entityList "service-account" cfg.provision.service-accounts
           ++ entityList "oauth2" cfg.provision.systems.oauth2;
 
         # Accumulate entities by name. Track corresponding entity types for later duplicate check.
