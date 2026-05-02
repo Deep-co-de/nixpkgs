@@ -581,6 +581,37 @@ in
         );
       };
 
+      service-accounts = mkOption {
+        description = "Provisioning of kanidm service-accounts";
+        default = { };
+        type = types.attrsOf (
+          types.submodule {
+            options = {
+              present = mkPresentOption "service-account";
+
+              displayName = mkOption {
+                description = "Display name";
+                type = types.str;
+                example = "My Service Account";
+              };
+
+              entryManagedBy = mkOption {
+                description = "Managed by";
+                type = types.str;
+                example = "user-a";
+              };
+
+              groups = mkOption {
+                description = "List of groups this service-account should belong to.";
+                type = types.listOf types.str;
+                apply = unique;
+                default = [ ];
+              };
+            };
+          }
+        );
+      };
+
       systems.oauth2 = mkOption {
         description = "Provisioning of oauth2 resource servers";
         default = { };
